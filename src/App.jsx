@@ -1,13 +1,15 @@
-import './style/App.css';
+import './style/App.scss';
 import Header from './components/Header';
-import Home from './components/Home';
+import Learn from './components/Learn';
+import Table from './components/Table';
 
 function App() {
   return (
-    <div className='container'>
+    <>
       <Header></Header>
-      <Home></Home>
-    </div>
+      <Learn>
+      </Learn>
+    </>
   );
 }
 

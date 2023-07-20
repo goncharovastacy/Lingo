@@ -1,6 +1,11 @@
+import '../style/Learn.scss';
+import Card from './Card';
+
 function Learn() {
     return (
-        <div>Learn</div>
+        <div className="learn">
+            <Card/>
+        </div>
     );
 }
 

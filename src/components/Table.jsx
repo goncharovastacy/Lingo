@@ -1,6 +1,8 @@
+import '../style/Table.scss';
+
 function Table() {
     return (
-        <div>Table</div>
+        <div className="table">Table</div>
     );
 }
 
