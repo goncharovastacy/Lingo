@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
-
 $violetcl: #484283;
 $beigecl: #FFF4EE;
 $redcl: #F14F4F;
@@ -8,6 +6,11 @@ $redhovercl: #d23838;
 @mixin font1 {
     font-family: 'Nunito';
     color: $beigecl;
+}
+
+@mixin font2 {
+    font-family: 'Nunito';
+    color: #39336b;
 }
 
 @mixin redbutton {

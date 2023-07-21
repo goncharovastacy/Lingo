@@ -1,14 +1,13 @@
 import './style/App.scss';
-import Header from './components/Header';
-import Learn from './components/Learn';
-import Table from './components/Table';
+import Header from './components/Header/Header';
+import Learn from './components/Learn/Learn';
+import Table from './components/Table/Table';
 
 function App() {
   return (
     <>
       <Header></Header>
-      <Learn>
-      </Learn>
+      <Table></Table>
     </>
   );
 }

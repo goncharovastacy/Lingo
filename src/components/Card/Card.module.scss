@@ -1,6 +1,6 @@
-@import 'General';
+@import './../../style/Template.scss';
 
-.card-container{
+.container{
     padding-top: 150px;
     display: flex;
     justify-content: center;
@@ -17,18 +17,18 @@
     justify-content: center;
     border-radius: 30px;
     background-color: $violetcl;
-    &__word{
+    .word{
         @include font1;
         font-size: 30px;
         font-weight: 600;
     }
-    &__transcription{
+    .transcription{
         @include font1;
         margin-top: 15px;
         font-size: 20px;
         font-weight: 400;
     }
-    &__button{
+    .button{
         @include redbutton;
         margin-top: 20px;
         padding: 5px 7px;
