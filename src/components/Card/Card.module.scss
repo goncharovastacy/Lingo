@@ -24,18 +24,25 @@
     }
     .transcription{
         @include font1;
-        margin-top: 15px;
+        margin-top: 20px;
         font-size: 20px;
         font-weight: 400;
     }
     .button{
         @include redbutton;
-        margin-top: 20px;
+        margin-top: 25px;
         padding: 5px 7px;
         border-radius: 10px;
         @include font1;
         font-size: 20px;
         font-weight: 500;
+    }
+    .translation{
+        margin-top: 25px;
+        @include font1;
+        font-size: 26px;
+        font-weight: 400;
+        cursor: pointer;
     }
 }
 
