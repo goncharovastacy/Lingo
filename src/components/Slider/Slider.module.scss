@@ -1,0 +1,51 @@
+@import './../../style/Template.scss';
+
+
+.container{
+    padding-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.button_back,
+.button_forward{
+    @include redbutton;
+    border-radius: 20px;
+    width: 60px;
+    height: 60px;
+    img{
+        max-width: 80%;
+    }
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}
+
+.continue{
+    h2{
+        @include font2;
+        font-size: 33px;
+    }
+    button{
+        @include redbutton;
+        padding: 5px 7px;
+        display: flex;
+        margin: 20px auto 0;
+        border-radius: 15px;
+        @include font1;
+        font-size: 20px;
+        font-weight: 700;
+    }
+}
+
+.counter{
+    margin-top: 30px;
+    p{
+        @include font2;
+        font-size: 30px;
+        text-align: center;
+    }
+}
