@@ -9,7 +9,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .logo{
+    .logo a{
         @include font1;
         font-size: 30px;
         font-weight: 700;
@@ -18,7 +18,7 @@ header{
     ul{
         display: flex;
         gap: 25px;
-        li{
+        li a{
             @include font1;
             font-size: 23px;
             font-weight: 600;
