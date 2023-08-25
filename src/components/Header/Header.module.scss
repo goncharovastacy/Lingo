@@ -1,31 +1,31 @@
-@import './../../style/Template.scss';
+@import "./../../style/Template.scss";
 
-header{
-    background-color: $violetcl;
+header {
+  background-color: $violetcl;
 }
 
-.header{
-    padding: 17px 0;
+.header {
+  padding: 17px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo a {
+    @include font1;
+    font-size: 30px;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px $redcl;
+  }
+  nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .logo a{
-        @include font1;
-        font-size: 30px;
-        font-weight: 700;
+    gap: 25px;
+    a {
+      @include font1;
+      font-size: 23px;
+      font-weight: 600;
+      cursor: pointer;
+      &:hover {
         text-shadow: 1px 1px 1px $redcl;
+      }
     }
-    ul{
-        display: flex;
-        gap: 25px;
-        li a{
-            @include font1;
-            font-size: 23px;
-            font-weight: 600;
-            cursor: pointer;
-            &:hover{
-                text-shadow: 1px 1px 1px $redcl;
-            }
-        }
-    }
+  }
 }

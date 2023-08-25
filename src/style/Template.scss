@@ -1,23 +1,23 @@
 $violetcl: #484283;
-$beigecl: #FFF4EE;
-$redcl: #F14F4F;
+$beigecl: #fff4ee;
+$redcl: #f14f4f;
 $redhovercl: #d23838;
 
 @mixin font1 {
-    font-family: 'Nunito';
-    color: $beigecl;
+  font-family: "Nunito";
+  color: $beigecl;
 }
 
 @mixin font2 {
-    font-family: 'Nunito';
-    color: #39336b;
+  font-family: "Nunito";
+  color: #39336b;
 }
 
 @mixin redbutton {
-    cursor: pointer;
-    background-color: $redcl;
-    transition: all 0.3s ease;
-    &:hover{
-        background-color: $redhovercl;
-    }
+  cursor: pointer;
+  background-color: $redcl;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: $redhovercl;
+  }
 }
