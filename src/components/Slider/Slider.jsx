@@ -8,6 +8,11 @@ function Slider(props) {
   const { wordsArr } = props;
   const [index, setIndex] = useState(0);
   const [wordNumber, setWordNumber] = useState(1);
+  const [learnScore, setLearnScore] = useState(0);
+
+  const increaseScore = () => {
+    setLearnScore(learnScore + 1);
+  };
   // возвращает предыдущую карточку
   const handleBack = () => {
     setIndex(index - 1);
@@ -42,6 +47,7 @@ function Slider(props) {
                 word={wordsArr[index].english}
                 transcription={wordsArr[index].transcription}
                 translation={wordsArr[index].russian}
+                score={increaseScore}
               ></Card>
               <button className={st.button_forward} onClick={handleForward}>
                 <img src={arrowright} alt="Arrow right" />
@@ -49,7 +55,9 @@ function Slider(props) {
             </div>
             <div className={st.counter}>
               <p>
-                <span>{wordNumber}</span> / <span>{wordsArr.length}</span>
+                {" "}
+                Words learnt:
+                <span> {learnScore}</span> / <span>{wordsArr.length}</span>
               </p>
             </div>
           </>
