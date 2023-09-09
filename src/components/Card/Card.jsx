@@ -5,11 +5,18 @@ function Card(props) {
   const { word, transcription, translation, score } = props;
   const [showed, setShowed] = useState(false);
   const buttonRef = useRef(null);
+
   // следит изменяется ли слово
   useEffect(() => {
     setShowed(false);
-    buttonRef.current.focus();
   }, [word]);
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.focus();
+    }
+  });
+
   const handleChange = () => {
     setShowed(!showed);
     score();

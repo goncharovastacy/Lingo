@@ -9,9 +9,16 @@ function Slider(props) {
   const [index, setIndex] = useState(0);
   const [wordNumber, setWordNumber] = useState(1);
   const [learnScore, setLearnScore] = useState(0);
+  const [wordsArrForScore, setWordsArrForScore] = useState([]);
 
+  // устанавливает число выученных слов
   const increaseScore = () => {
-    setLearnScore(learnScore + 1);
+    const scoreArr = [...wordsArrForScore];
+    if (!scoreArr.includes(wordsArr[index].english)) {
+      scoreArr.push(wordsArr[index].english);
+    }
+    setWordsArrForScore(scoreArr);
+    setLearnScore(scoreArr.length);
   };
   // возвращает предыдущую карточку
   const handleBack = () => {
