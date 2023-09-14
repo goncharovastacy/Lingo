@@ -29,7 +29,7 @@ function Card(props) {
         <p className={st.translation}>{translation}</p>
       ) : (
         <button className={st.button} onClick={handleChange} ref={buttonRef}>
-          Show translation
+          Показать перевод
         </button>
       )}
     </div>

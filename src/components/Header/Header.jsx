@@ -12,9 +12,9 @@ function Header() {
             </p>
           </div>
           <nav>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/learn">Learn</NavLink>
-            <NavLink to="/vocabulary">Vocabulary</NavLink>
+            <NavLink to="/">Главная</NavLink>
+            <NavLink to="/learn">Учить</NavLink>
+            <NavLink to="/vocabulary">Словарь</NavLink>
           </nav>
         </div>
       </div>

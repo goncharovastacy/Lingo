@@ -5,102 +5,112 @@ import delet from "./../../assets/images/delete.svg";
 function Row(props) {
   const { english, transcription, russian, tags } = props;
   const [edit, setEdit] = useState(false);
-  const [editEnglish, setEnglish] = useState(english);
-  const [editTranscription, setTranscription] = useState(transcription);
-  const [editRussian, setRussian] = useState(russian);
-  const [editTags, setTags] = useState(tags);
+  const [editFields, setEditFields] = useState({
+    english: english,
+    transcription: transcription,
+    russian: russian,
+    tags: tags,
+  });
   const handleEdit = () => {
     setEdit(!edit);
   };
 
   const handleCancel = () => {
     setEdit(false);
-    setEnglish(english);
-    setTranscription(transcription);
-    setRussian(russian);
-    setTags(tags);
+    setEditFields({
+      english: english,
+      transcription: transcription,
+      russian: russian,
+      tags: tags,
+    });
   };
 
-  const handleChangeEnglish = (event) => {
-    setEnglish(event.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "english" && /[а-яА-Я]/g.test(value)) {
+      alert("В английском слове можно использовать только латинский алфавит");
+    } else if (name === "russian" && /[a-zA-Z]/g.test(value)) {
+      alert("В переводе слова можно использовать только кириллицу");
+    }
+    setEditFields({ ...editFields, [name]: value });
   };
 
-  const handleChangeTranscription = (event) => {
-    setTranscription(event.target.value);
-  };
-
-  const handleChangeRussian = (event) => {
-    setRussian(event.target.value);
-  };
-
-  const handleChangeTags = (event) => {
-    setTags(event.target.value);
+  const handleSave = () => {
+    if (
+      editFields.english !== "" &&
+      editFields.transcription !== "" &&
+      editFields.russian !== "" &&
+      editFields.tags !== ""
+    ) {
+      setEdit(false);
+    }
   };
 
   return (
     <tr>
-      <th>
-        {edit ? (
-          <input
-            type="text"
-            placeholder={editEnglish}
-            onChange={handleChangeEnglish}
-          />
-        ) : (
-          editEnglish
-        )}
-      </th>
-      <th>
-        {edit ? (
-          <input
-            type="text"
-            placeholder={editTranscription}
-            onChange={handleChangeTranscription}
-          />
-        ) : (
-          editTranscription
-        )}
-      </th>
-      <th>
-        {edit ? (
-          <input
-            type="text"
-            placeholder={editRussian}
-            onChange={handleChangeRussian}
-          />
-        ) : (
-          editRussian
-        )}
-      </th>
-      <th>
-        {edit ? (
-          <input
-            type="text"
-            placeholder={editTags}
-            onChange={handleChangeTags}
-          />
-        ) : (
-          editTags
-        )}
-      </th>
-      <th>
-        {edit ? (
-          <button>Save</button>
-        ) : (
-          <button>
-            <img src={editimg} alt="Edit" onClick={handleEdit} />
-          </button>
-        )}
-      </th>
-      <th>
-        {edit ? (
-          <button onClick={handleCancel}>Cancel</button>
-        ) : (
-          <button>
-            <img src={delet} alt="Delete" />
-          </button>
-        )}
-      </th>
+      {edit ? (
+        <>
+          <th>
+            <input
+              type="text"
+              value={editFields.english}
+              onChange={handleChange}
+              name="english"
+              className={editFields.english !== "" ? "" : "error"}
+            />
+          </th>
+          <th>
+            <input
+              type="text"
+              value={editFields.transcription}
+              onChange={handleChange}
+              name="transcription"
+              className={editFields.transcription !== "" ? "" : "error"}
+            />
+          </th>
+          <th>
+            <input
+              type="text"
+              value={editFields.russian}
+              onChange={handleChange}
+              name="russian"
+              className={editFields.russian !== "" ? "" : "error"}
+            />
+          </th>
+          <th>
+            <input
+              type="text"
+              value={editFields.tags}
+              onChange={handleChange}
+              name="tags"
+              className={editFields.tags !== "" ? "" : "error"}
+            />
+          </th>
+          <th>
+            <button onClick={handleSave}>Сохранить</button>
+          </th>
+          <th>
+            <button onClick={handleCancel}>Отмена</button>
+          </th>
+        </>
+      ) : (
+        <>
+          <th>{editFields.english}</th>
+          <th>{editFields.transcription}</th>
+          <th>{editFields.russian}</th>
+          <th>{editFields.tags}</th>
+          <th>
+            <button>
+              <img src={editimg} alt="Edit" onClick={handleEdit} />
+            </button>
+          </th>
+          <th>
+            <button>
+              <img src={delet} alt="Delete" />
+            </button>
+          </th>
+        </>
+      )}
     </tr>
   );
 }

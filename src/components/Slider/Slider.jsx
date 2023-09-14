@@ -34,6 +34,8 @@ function Slider(props) {
   const handleDefault = () => {
     setIndex(0);
     setWordNumber(1);
+    setWordsArrForScore([]);
+    setLearnScore(0);
   };
 
   // если массив слов не передан, то выводим, что слов нет
@@ -63,7 +65,7 @@ function Slider(props) {
             <div className={st.counter}>
               <p>
                 {" "}
-                Words learnt:
+                Выученных слов:
                 <span> {learnScore}</span> / <span>{wordsArr.length}</span>
               </p>
             </div>
@@ -71,8 +73,8 @@ function Slider(props) {
         ) : (
           <div className={st.container}>
             <div className={st.continue}>
-              <h2>There are no more words</h2>
-              <button onClick={handleDefault}>Continue learning</button>
+              <h2>Больше нет слов</h2>
+              <button onClick={handleDefault}>Продолжить изучение</button>
             </div>
           </div>
         )}
@@ -83,7 +85,7 @@ function Slider(props) {
       <>
         <div className={st.container}>
           <div className={st.continue}>
-            <h2>Sorry, there are no words</h2>
+            <h2>Упс, слова не найдены</h2>
           </div>
         </div>
       </>
