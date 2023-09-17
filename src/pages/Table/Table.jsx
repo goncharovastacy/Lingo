@@ -12,9 +12,9 @@ function Table() {
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "english" && /[а-яА-Я]/g.test(value)) {
+    if (name === "english" && /[\dА-Яа-я]/g.test(value)) {
       alert("В английском слове можно использовать только латинский алфавит");
-    } else if (name === "russian" && /[a-zA-Z]/g.test(value)) {
+    } else if (name === "russian" && /[\da-zA-Z]/g.test(value)) {
       alert("В переводе слова можно использовать только кириллицу");
     }
     setState({ ...state, [name]: value });

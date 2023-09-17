@@ -27,9 +27,9 @@ function Row(props) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "english" && /[а-яА-Я]/g.test(value)) {
+    if (name === "english" && /[\dА-Яа-я]/g.test(value)) {
       alert("В английском слове можно использовать только латинский алфавит");
-    } else if (name === "russian" && /[a-zA-Z]/g.test(value)) {
+    } else if (name === "russian" && /[\da-zA-Z]/g.test(value)) {
       alert("В переводе слова можно использовать только кириллицу");
     }
     setEditFields({ ...editFields, [name]: value });
@@ -87,7 +87,19 @@ function Row(props) {
             />
           </th>
           <th>
-            <button onClick={handleSave}>Сохранить</button>
+            <button
+              onClick={handleSave}
+              disabled={
+                editFields.english === "" ||
+                editFields.transcription === "" ||
+                editFields.russian === "" ||
+                editFields.tags === ""
+                  ? true
+                  : false
+              }
+            >
+              Сохранить
+            </button>
           </th>
           <th>
             <button onClick={handleCancel}>Отмена</button>
