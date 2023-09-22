@@ -1,7 +1,9 @@
+import { useState } from "react";
+import { useContext } from "react";
+import { WordsContext } from "../../context/WordsContext";
+import Loader from "../../components/Loader/Loader";
 import Row from "../../components/Row/Row";
 import st from "../Table/Table.module.scss";
-import words from "../../data/words.json";
-import { useState } from "react";
 
 function Table() {
   const [state, setState] = useState({
@@ -10,6 +12,7 @@ function Table() {
     russian: "",
     tags: "",
   });
+  const { words, loading, addNewWord, changeWord } = useContext(WordsContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "english" && /[\dА-Яа-я]/g.test(value)) {
@@ -35,6 +38,7 @@ function Table() {
       state.russian !== "" &&
       state.tags !== ""
     ) {
+      addNewWord(state);
       console.log(state);
       setState({
         english: "",
@@ -46,6 +50,16 @@ function Table() {
       alert("Пожалуйста, заполните все поля");
     }
   };
+
+  if (loading === true) {
+    return (
+      <div className={st.table}>
+        <div className="container">
+          <Loader />
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={st.table}>
       <div className="container">
