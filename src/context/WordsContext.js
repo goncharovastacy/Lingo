@@ -40,7 +40,7 @@ function WordsContextProvider({ children }) {
     }
   };
 
-  const changeWord = async (wordToChange) => {
+  const editWord = async (wordToChange) => {
     setLoading(true);
     try {
       await fetch(
@@ -74,7 +74,7 @@ function WordsContextProvider({ children }) {
 
   return (
     <WordsContext.Provider
-      value={{ words, loading, error, addNewWord, changeWord, deleteWord }}
+      value={{ words, loading, error, addNewWord, editWord, deleteWord }}
     >
       {children}
     </WordsContext.Provider>

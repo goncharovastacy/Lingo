@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { WordsContext } from "../../context/WordsContext";
+import Error from "../../components/Error/Error";
 import Loader from "../../components/Loader/Loader";
 import Row from "../../components/Row/Row";
 import st from "../Table/Table.module.scss";
@@ -12,7 +13,7 @@ function Table() {
     russian: "",
     tags: "",
   });
-  const { words, loading, addNewWord, changeWord } = useContext(WordsContext);
+  const { words, loading, error, addNewWord } = useContext(WordsContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "english" && /[\dА-Яа-я]/g.test(value)) {
@@ -31,15 +32,15 @@ function Table() {
     });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (
       state.english !== "" &&
       state.transcription !== "" &&
       state.russian !== "" &&
       state.tags !== ""
     ) {
-      addNewWord(state);
       console.log(state);
+      await addNewWord(state);
       setState({
         english: "",
         transcription: "",
@@ -50,6 +51,10 @@ function Table() {
       alert("Пожалуйста, заполните все поля");
     }
   };
+
+  if (error !== "") {
+    return <Error />;
+  }
 
   if (loading === true) {
     return (
@@ -115,9 +120,10 @@ function Table() {
                 <button onClick={handleCancel}>Отмена</button>
               </th>
             </tr>
-            {words.map((word, i) => (
+            {words.map((word) => (
               <Row
-                key={i}
+                id={word.id}
+                key={word.id}
                 english={word.english}
                 transcription={word.transcription}
                 russian={word.russian}

@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { WordsContext } from "../../context/WordsContext";
 import editimg from "./../../assets/images/edit.svg";
 import delet from "./../../assets/images/delete.svg";
 
 function Row(props) {
-  const { english, transcription, russian, tags } = props;
+  const { english, transcription, russian, tags, id } = props;
   const [edit, setEdit] = useState(false);
   const [editFields, setEditFields] = useState({
     english: english,
@@ -11,6 +13,7 @@ function Row(props) {
     russian: russian,
     tags: tags,
   });
+  const { editWord, deleteWord } = useContext(WordsContext);
   const handleEdit = () => {
     setEdit(!edit);
   };
@@ -35,7 +38,7 @@ function Row(props) {
     setEditFields({ ...editFields, [name]: value });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (
       editFields.english !== "" &&
       editFields.transcription !== "" &&
@@ -43,7 +46,18 @@ function Row(props) {
       editFields.tags !== ""
     ) {
       setEdit(false);
+      await editWord({
+        id: id,
+        english: editFields.english,
+        transcription: editFields.transcription,
+        russian: editFields.russian,
+        tags: editFields.tags,
+      });
     }
+  };
+
+  const handleDelete = async () => {
+    await deleteWord(id);
   };
 
   return (
@@ -118,7 +132,7 @@ function Row(props) {
           </th>
           <th>
             <button>
-              <img src={delet} alt="Delete" />
+              <img src={delet} alt="Delete" onClick={handleDelete} />
             </button>
           </th>
         </>

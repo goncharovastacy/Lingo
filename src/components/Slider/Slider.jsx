@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { WordsContext } from "../../context/WordsContext";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
+import Error from "../Error/Error";
 import st from "../Slider/Slider.module.scss";
 import arrowleft from "./../../assets/images/arrowleft.svg";
 import arrowright from "./../../assets/images/arrowright.svg";
@@ -12,7 +13,7 @@ function Slider() {
   const [wordNumber, setWordNumber] = useState(1);
   const [learnScore, setLearnScore] = useState(0);
   const [wordsArrForScore, setWordsArrForScore] = useState([]);
-  const { words, loading } = useContext(WordsContext);
+  const { words, loading, error } = useContext(WordsContext);
 
   // устанавливает число выученных слов
   const increaseScore = () => {
@@ -41,6 +42,10 @@ function Slider() {
     setLearnScore(0);
   };
 
+  if (error !== "") {
+    return <Error />;
+  }
+
   if (loading === true) {
     return (
       <div className={st.container}>
@@ -49,7 +54,7 @@ function Slider() {
     );
   }
 
-  if (words !== undefined) {
+  if (words.length !== 0) {
     return (
       <>
         {index < words.length ? (
