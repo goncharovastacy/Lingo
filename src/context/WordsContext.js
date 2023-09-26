@@ -12,64 +12,63 @@ function WordsContextProvider({ children }) {
     getWords();
   }, []);
 
-  const getWords = async () => {
+  const apiRequest = async (requestCallback) => {
     setLoading(true);
     try {
+      const result = await requestCallback();
+      setLoading(false);
+      return result;
+    } catch (err) {
+      setError(err.message || "Произошла ошибка");
+      setLoading(false);
+      throw err;
+    }
+  };
+
+  const getWords = () => {
+    apiRequest(async () => {
       const res = await fetch("http://itgirlschool.justmakeit.ru/api/words");
       const data = await res.json();
       setWords(data);
-      setLoading(false);
-    } catch (err) {
-      setError(err);
-      setLoading(false);
-    }
+    });
   };
 
   const addNewWord = async (newWord) => {
-    setLoading(true);
-    try {
+    apiRequest(async () => {
       await fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(newWord),
       });
       await getWords();
-      setLoading(false);
-    } catch (err) {
-      setError(err);
-      setLoading(false);
-    }
+    });
   };
 
   const editWord = async (wordToChange) => {
-    setLoading(true);
-    try {
+    apiRequest(async () => {
       await fetch(
         `http://itgirlschool.justmakeit.ru/api/words/${wordToChange.id}/update`,
         {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(wordToChange),
         }
       );
       await getWords();
-      setLoading(false);
-    } catch (err) {
-      setError(err);
-      setLoading(false);
-    }
+    });
   };
 
   const deleteWord = async (id) => {
-    setLoading(true);
-    try {
+    apiRequest(async () => {
       await fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
-        method: "POST",
+        method: "DELETE",
       });
       await getWords();
-      setLoading(false);
-    } catch (err) {
-      setError(err);
-      setLoading(false);
-    }
+    });
   };
 
   return (
