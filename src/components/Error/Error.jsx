@@ -6,7 +6,7 @@ function Error() {
   return (
     <div className="container">
       <h2>Что-то пошло не так</h2>
-      <p>Ошибка:{error}</p>
+      <p>Ошибка: {error}</p>
     </div>
   );
 }

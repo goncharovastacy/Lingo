@@ -65,7 +65,7 @@ function WordsContextProvider({ children }) {
   const deleteWord = async (id) => {
     apiRequest(async () => {
       await fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
-        method: "DELETE",
+        method: "POST",
       });
       await getWords();
     });
