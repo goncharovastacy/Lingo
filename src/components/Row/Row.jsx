@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useContext } from "react";
-import { WordsContext } from "../../context/WordsContext";
+import { observer, inject } from "mobx-react";
 import editimg from "./../../assets/images/edit.svg";
 import delet from "./../../assets/images/delete.svg";
 
 function Row(props) {
-  const { english, transcription, russian, tags, id } = props;
+  const { english, transcription, russian, tags, id, WordsStore } = props;
   const [edit, setEdit] = useState(false);
   const [editFields, setEditFields] = useState({
     english: english,
@@ -13,7 +12,6 @@ function Row(props) {
     russian: russian,
     tags: tags,
   });
-  const { editWord, deleteWord } = useContext(WordsContext);
   const handleEdit = () => {
     setEdit(!edit);
   };
@@ -46,7 +44,7 @@ function Row(props) {
       editFields.tags !== ""
     ) {
       setEdit(false);
-      await editWord({
+      await WordsStore.editWord({
         id: id,
         english: editFields.english,
         transcription: editFields.transcription,
@@ -57,7 +55,7 @@ function Row(props) {
   };
 
   const handleDelete = async () => {
-    await deleteWord(id);
+    await WordsStore.deleteWord(id);
   };
 
   return (
@@ -140,4 +138,4 @@ function Row(props) {
     </tr>
   );
 }
-export default Row;
+export default inject("WordsStore")(observer(Row));

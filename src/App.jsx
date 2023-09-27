@@ -20,5 +20,5 @@ function App() {
     </Router>
   );
 }
-
 export default App;
+// export default inject(["wordsStore"])(observer(App));

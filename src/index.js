@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "mobx-react";
 import "./style/index.css";
 import App from "./App";
-import { WordsContextProvider } from "./context/WordsContext";
+import WordsStore from "./store/WordsStore";
+
+const stores = {
+  WordsStore: new WordsStore(),
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <WordsContextProvider>
+  <Provider {...stores}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </WordsContextProvider>
+  </Provider>
 );
