@@ -12,8 +12,6 @@ const stores = {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider {...stores}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </Provider>
 );
