@@ -8,9 +8,6 @@ export default class WordsStore {
   constructor() {
     makeAutoObservable(this);
     this.getWords();
-    this.addNewWord();
-    this.editWord();
-    this.deleteWord();
   }
 
   apiRequest = async (requestCallback) => {
