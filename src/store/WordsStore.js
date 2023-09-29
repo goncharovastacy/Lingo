@@ -7,7 +7,6 @@ export default class WordsStore {
 
   constructor() {
     makeAutoObservable(this);
-    this.getWords();
   }
 
   apiRequest = async (requestCallback) => {

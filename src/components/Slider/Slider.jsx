@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { observer, inject } from "mobx-react";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
@@ -13,6 +13,10 @@ const Slider = inject(["WordsStore"])(
     const [wordNumber, setWordNumber] = useState(1);
     const [learnScore, setLearnScore] = useState(0);
     const [wordsArrForScore, setWordsArrForScore] = useState([]);
+
+    useEffect(() => {
+      WordsStore.getWords();
+    }, []);
 
     // устанавливает число выученных слов
     const increaseScore = () => {

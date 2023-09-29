@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { observer, inject } from "mobx-react";
 import Error from "../../components/Error/Error";
 import Loader from "../../components/Loader/Loader";
@@ -13,6 +13,10 @@ const Table = inject(["WordsStore"])(
       russian: "",
       tags: "",
     });
+
+    useEffect(() => {
+      WordsStore.getWords();
+    }, []);
     const handleChange = (e) => {
       const { name, value } = e.target;
       if (name === "english" && /[\dА-Яа-я]/g.test(value)) {
