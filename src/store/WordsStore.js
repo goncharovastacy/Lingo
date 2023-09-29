@@ -28,7 +28,7 @@ export default class WordsStore {
 
   getWords = () => {
     this.apiRequest(async () => {
-      const res = await fetch("http://itgirlschool.justmakeit.ru/api/words");
+      const res = await fetch("/api/words");
       const data = await res.json();
       runInAction(() => {
         this.words = data;
@@ -38,7 +38,7 @@ export default class WordsStore {
 
   addNewWord = async (newWord) => {
     this.apiRequest(async () => {
-      await fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
+      await fetch("/api/words/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,23 +51,20 @@ export default class WordsStore {
 
   editWord = async (wordToChange) => {
     this.apiRequest(async () => {
-      await fetch(
-        `http://itgirlschool.justmakeit.ru/api/words/${wordToChange.id}/update`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(wordToChange),
-        }
-      );
+      await fetch(`/api/words/${wordToChange.id}/update`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(wordToChange),
+      });
       await this.getWords();
     });
   };
 
   deleteWord = async (id) => {
     this.apiRequest(async () => {
-      await fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
+      await fetch(`/api/words/${id}/delete`, {
         method: "POST",
       });
       await this.getWords();

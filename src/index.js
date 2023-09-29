@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "mobx-react";
-import "./style/index.css";
-import App from "./App";
+import App from "./components/App/App";
 import WordsStore from "./store/WordsStore";
+import "./style/index.css";
 
 const stores = {
   WordsStore: new WordsStore(),
