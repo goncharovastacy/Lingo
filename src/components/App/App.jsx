@@ -21,4 +21,3 @@ function App() {
   );
 }
 export default App;
-// export default inject(["wordsStore"])(observer(App));

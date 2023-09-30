@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 export default class WordsStore {
   words = [];
@@ -13,15 +13,11 @@ export default class WordsStore {
     this.loading = true;
     try {
       const result = await requestCallback();
-      runInAction(() => {
-        this.loading = false;
-      });
+      this.loading = false;
       return result;
     } catch (err) {
-      runInAction(() => {
-        this.error = err.message || "Произошла ошибка";
-        this.loading = false;
-      });
+      this.error = err.message || "Произошла ошибка";
+      this.loading = false;
       throw err;
     }
   };
@@ -30,9 +26,7 @@ export default class WordsStore {
     this.apiRequest(async () => {
       const res = await fetch("/api/words");
       const data = await res.json();
-      runInAction(() => {
-        this.words = data;
-      });
+      this.words = data;
     });
   };
 

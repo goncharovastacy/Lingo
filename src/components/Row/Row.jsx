@@ -40,8 +40,7 @@ function Row(props) {
     if (
       editFields.english !== "" &&
       editFields.transcription !== "" &&
-      editFields.russian !== "" &&
-      editFields.tags !== ""
+      editFields.russian !== ""
     ) {
       setEdit(false);
       await WordsStore.editWord({
@@ -95,7 +94,6 @@ function Row(props) {
               value={editFields.tags}
               onChange={handleChange}
               name="tags"
-              className={editFields.tags !== "" ? "" : "error"}
             />
           </th>
           <th>
@@ -104,8 +102,7 @@ function Row(props) {
               disabled={
                 editFields.english === "" ||
                 editFields.transcription === "" ||
-                editFields.russian === "" ||
-                editFields.tags === ""
+                editFields.russian === ""
                   ? true
                   : false
               }

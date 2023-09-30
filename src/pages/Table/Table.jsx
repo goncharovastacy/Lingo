@@ -39,10 +39,8 @@ const Table = inject(["WordsStore"])(
       if (
         state.english !== "" &&
         state.transcription !== "" &&
-        state.russian !== "" &&
-        state.tags !== ""
+        state.russian !== ""
       ) {
-        console.log(state);
         await WordsStore.addNewWord(state);
         setState({
           english: "",
