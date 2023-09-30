@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Error, Home, Learn, Table } from "./pages/index";
-import Header from "./components/Header/Header";
-import "./style/App.scss";
+import { Error, Home, Learn, Table } from "../../pages/index";
+import Header from "../Header/Header";
+import "../../style/App.scss";
 
 function App() {
   return (
@@ -20,5 +20,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { observer, inject } from "mobx-react";
 import editimg from "./../../assets/images/edit.svg";
 import delet from "./../../assets/images/delete.svg";
 
 function Row(props) {
-  const { english, transcription, russian, tags } = props;
+  const { english, transcription, russian, tags, id, WordsStore } = props;
   const [edit, setEdit] = useState(false);
   const [editFields, setEditFields] = useState({
     english: english,
@@ -35,15 +36,25 @@ function Row(props) {
     setEditFields({ ...editFields, [name]: value });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (
       editFields.english !== "" &&
       editFields.transcription !== "" &&
-      editFields.russian !== "" &&
-      editFields.tags !== ""
+      editFields.russian !== ""
     ) {
       setEdit(false);
+      await WordsStore.editWord({
+        id: id,
+        english: editFields.english,
+        transcription: editFields.transcription,
+        russian: editFields.russian,
+        tags: editFields.tags,
+      });
     }
+  };
+
+  const handleDelete = async () => {
+    await WordsStore.deleteWord(id);
   };
 
   return (
@@ -83,7 +94,6 @@ function Row(props) {
               value={editFields.tags}
               onChange={handleChange}
               name="tags"
-              className={editFields.tags !== "" ? "" : "error"}
             />
           </th>
           <th>
@@ -92,8 +102,7 @@ function Row(props) {
               disabled={
                 editFields.english === "" ||
                 editFields.transcription === "" ||
-                editFields.russian === "" ||
-                editFields.tags === ""
+                editFields.russian === ""
                   ? true
                   : false
               }
@@ -118,7 +127,7 @@ function Row(props) {
           </th>
           <th>
             <button>
-              <img src={delet} alt="Delete" />
+              <img src={delet} alt="Delete" onClick={handleDelete} />
             </button>
           </th>
         </>
@@ -126,4 +135,4 @@ function Row(props) {
     </tr>
   );
 }
-export default Row;
+export default inject("WordsStore")(observer(Row));

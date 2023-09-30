@@ -1,11 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './style/index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "mobx-react";
+import App from "./components/App/App";
+import WordsStore from "./store/WordsStore";
+import "./style/index.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const stores = {
+  WordsStore: new WordsStore(),
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <Provider {...stores}>
     <App />
-  </React.StrictMode>
+  </Provider>
 );
