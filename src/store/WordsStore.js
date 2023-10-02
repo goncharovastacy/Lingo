@@ -44,7 +44,7 @@ export default class WordsStore {
   };
 
   editWord = async (wordToChange) => {
-    this.apiRequest(async () => {
+    await this.apiRequest(async () => {
       await fetch(`/api/words/${wordToChange.id}/update`, {
         method: "POST",
         headers: {
@@ -52,7 +52,7 @@ export default class WordsStore {
         },
         body: JSON.stringify(wordToChange),
       });
-      await this.getWords();
+      this.getWords();
     });
   };
 

@@ -22,3 +22,15 @@ h1 {
     color: $beigecl;
   }
 }
+
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 35px;
+  }
+  .start {
+    padding: 5px 10px;
+    a {
+      font-size: 23px;
+    }
+  }
+}

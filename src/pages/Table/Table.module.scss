@@ -48,3 +48,16 @@ table {
     }
   }
 }
+
+@media screen and (max-width: 800px) {
+  thead {
+    th {
+      font-size: 14px;
+    }
+  }
+  tbody {
+    th {
+      font-size: 14px;
+    }
+  }
+}
