@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { observer, inject } from "mobx-react";
 import editimg from "./../../assets/images/edit.svg";
 import delet from "./../../assets/images/delete.svg";
@@ -12,6 +12,14 @@ function Row(props) {
     russian: russian,
     tags: tags,
   });
+  useEffect(() => {
+    setEditFields({
+      english: english,
+      transcription: transcription,
+      russian: russian,
+      tags: tags,
+    });
+  }, [english, transcription, russian, tags]);
   const handleEdit = () => {
     setEdit(!edit);
   };

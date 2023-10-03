@@ -9,13 +9,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .menu {
+    display: none;
+  }
   .logo a {
     @include font1;
     font-size: 30px;
     font-weight: 700;
     text-shadow: 1px 1px 1px $redcl;
   }
-  nav {
+  .desktop {
     display: flex;
     gap: 25px;
     a {
@@ -26,6 +29,39 @@ header {
       &:hover {
         text-shadow: 1px 1px 1px $redcl;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    .menu {
+      display: block;
+      padding: 7px 9px;
+      @include font1;
+      font-size: 23px;
+      font-weight: 600;
+      background-color: $redcl;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    .menu__active {
+      max-width: 50px;
+      background-color: $redcl;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    .logo__active {
+      display: none;
+    }
+    .navigation {
+      position: fixed;
+      top: -100px;
+    }
+    .navigation_active {
+      top: 1;
+      display: flex;
+      flex-direction: column;
     }
   }
 }

@@ -50,14 +50,53 @@ table {
 }
 
 @media screen and (max-width: 800px) {
-  thead {
-    th {
-      font-size: 14px;
+  table {
+    thead {
+      th {
+        font-size: 15px;
+      }
+    }
+    tbody {
+      th {
+        font-size: 15px;
+        input {
+          width: 70%;
+          font-size: 15px;
+        }
+      }
+    }
+    button {
+      padding: 3px 5px;
+      font-size: 13px;
+      img {
+        max-width: 15px;
+      }
     }
   }
-  tbody {
-    th {
-      font-size: 14px;
+}
+
+@media screen and (max-width: 428px) {
+  table {
+    thead {
+      th {
+        font-size: 10px;
+      }
+    }
+    tbody {
+      th {
+        font-size: 11px;
+        input {
+          width: 90%;
+          font-size: 9px;
+        }
+      }
+    }
+    button {
+      padding: 3px 5px;
+      font-size: 7px;
+      img {
+        max-width: 11px;
+      }
     }
   }
 }
