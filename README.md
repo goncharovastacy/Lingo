@@ -1,4 +1,12 @@
-<p>in progress</p>
+#Lingo
+Lingo is an app for learning English words.
+
+## Result:
+
+<img src="./screenshots/main.png" alt="main" width="80%">
+<img src="./screenshots/slider.png" alt="slider" width="80%">
+<img src="./screenshots/table.png" alt="table" width="80%">
+<img src="./screenshots/error.png" alt="error" width="80%">
 
 ## Technologies:
 
