@@ -1,4 +1,4 @@
-#Lingo
+# Lingo
 Lingo is an app for learning English words.
 
 ## Result:
